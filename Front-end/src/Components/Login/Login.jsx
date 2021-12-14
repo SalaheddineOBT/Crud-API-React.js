@@ -2,33 +2,28 @@ import React,{useState} from "react";
 import sha256 from "sha256";
 
 export default function Login({logined}){
-    
     const user={
         email:'',
         password:''
-    }
-    
+    };
     const [Values,SetValues]=useState(user);
     const [Error,SetError]=useState(null);
     const [Success,SetSuccess]=useState(null);
-    
     const OnChanging=(e)=>{
         const {name,value}=e.target;
         SetValues({...Values,[name]:value});
-    }
-
+    };
     const login=async (info)=>{
         const log=await fetch("http://localhost/Crud%20API%20PHP/Operations/Login.php",
             {
-                method:"post",
+                method:"POST",
                 headers: {'Content-Type': 'application/json' },
                 body: JSON.stringify(info)
             }
         );
         const data=await log.json();
         return data;
-    }
-
+    };
     const OnSubmited=async (e)=>{
         e.preventDefault();
         if(Values.password.length < 8){
@@ -43,8 +38,7 @@ export default function Login({logined}){
                 SetError(log.Message);
             }
         }
-    }
-
+    };
     return(
         <form onSubmit={OnSubmited} className="form">
             <h1>Login Form</h1>

@@ -1,7 +1,6 @@
 import React,{useState} from "react";
 import axios from 'axios';
 import sha256 from 'sha256';
-import {useHistory} from "react-router-dom";
 
 export default function Register(){
     const user={
@@ -61,7 +60,7 @@ export default function Register(){
             <label htmlFor="confirm">Passowrd :</label>
             <input type="password" name="confirm" placeholder="Confirm Your Password :" required onChange={OnChanging} />
             <button type="submit">Register</button>
-            <a href="/login">Already Have Account ?</a>
+            <a href="/">Already Have Account ?</a>
         </form>
     )
 }
