@@ -7,11 +7,13 @@ export default class Liste extends Component{
         this.inputEmail=createRef();
     };
     state={
-        isUpdate:false
+        isUpdate:false,
+        err:''
     };
     update=async (idd)=>{
         let name=this.inputUsername.current.value;
         let eml=this.inputEmail.current.value;
+        const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         if(name && eml && idd){
             await fetch("http://localhost/Crud%20API%20PHP/Operations/Update.php",{
                 method:"PUT",
@@ -20,12 +22,17 @@ export default class Liste extends Component{
             }).then(res=>{
                 return res.json();
             }).then(data=>{
-                if(data.success){
-                    this.toogleUpdate();
-                    this.props.listing();
-                    alert(data.Message);
+                if(!emailRegex.test(eml)){
+                    this.setState({err:"Email Forma Incorrect !"});
                 }else{
-                    alert(data.Message);
+                    this.setState({err:""});
+                    if(data.success){
+                        this.toogleUpdate();
+                        this.props.listing();
+                        alert(data.Message);
+                    }else{
+                        alert(data.Message);
+                    }
                 }
             }).catch(e=>{
                 console.log(e);
@@ -42,8 +49,12 @@ export default class Liste extends Component{
                 return res.json();
             }).then(data=>{
                 if(data.success){
-                    alert(data.Message);
-                    this.props.listing();
+                    if(this.props.id===id){
+                        this.props.logined(false,'','');
+                    }else{
+                        alert(data.Message);
+                        this.props.listing();
+                    }
                 }else{
                     alert(data.Message);
                 }
@@ -51,7 +62,6 @@ export default class Liste extends Component{
                 console.log(e);
             });
         }
-
     };
     cancel=()=>{
         this.toogleUpdate();
@@ -68,7 +78,7 @@ export default class Liste extends Component{
                     <td>{users.ID}</td>
                     <td>{users.UserName}</td>
                     <td>{users.Email}</td>
-                    <td><button type="submit" onClick={this.toogleUpdate}>Update</button><button type="submit" onClick={()=>this.delete(users.ID)}>Delete</button></td>
+                    <td><button className="btns up" type="submit" onClick={this.toogleUpdate}>Update</button><button className="btns del" type="submit" onClick={()=>this.delete(users.ID)}>Delete</button></td>
                 </tr>
             )
         };
@@ -77,8 +87,11 @@ export default class Liste extends Component{
                 <tr key={index}>
                     <td><input type="text" defaultValue={users.ID} disabled required /></td>
                     <td><input type="text" ref={this.inputUsername} defaultValue={users.UserName} required /></td>
-                    <td><input type="email" ref={this.inputEmail} defaultValue={users.Email} required /></td>
-                    <td><button type="submit" onClick={()=>this.update(users.ID)}>Save</button><button type="submit" onClick={this.cancel}>Cancel</button></td>
+                    <td>
+                        <input type="email" ref={this.inputEmail} defaultValue={users.Email} required />
+                        { (this.state.err) ? (<span className="error">{this.state.err}</span>) : null}
+                    </td>
+                    <td><button className="btns up" type="submit" onClick={()=>this.update(users.ID)}>Save</button><button className="btns" type="submit" onClick={this.cancel}>Cancel</button></td>
                 </tr>
             )
         };

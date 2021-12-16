@@ -4,22 +4,252 @@
     outline: none;
     overflow: auto;
     list-style: none;
+    box-sizing: border-box;
     text-decoration: none;
 }
 .error{
-    color:red;
+    background:red;
+    padding:.7rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
 }
 .form{
     display: grid;
     grid-template-columns: 1fr;
 }
-#root{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.info{
+    background: rgb(20, 230, 66);
+    color: #000;
+    text-align: center;
+    padding:.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.HomePage{
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.096);
     width: 100%;
     height: 100vh;
 }
-.info{
-    color: rgb(82, 136, 0);
+.HomePage nav{
+    position: fixed;
+    top: 0;left: 0;
+    display: flex;
+    width: 100%;
+    padding: 1em;
+    background: rgba(197, 136, 255, 0.24);
+    align-items: center;
+    justify-content: space-between;
+}
+.h{
+    color: blue;
+}
+.HomePage form{
+    height: 66.7vh;
+    background: #a2a2a2;
+    width: 95%;
+    margin:auto;
+    margin-top: 2rem;
+}
+/* .HomePage .cont button{
+} */
+.cont{
+    margin-top:5rem;
+}
+table{
+    width: 100%;
+    background: #000;
+}
+th{
+    padding: .5rem;
+    background: #FFF;
+}
+td{
+    padding: .5rem;
+    text-align: center;
+    background: #FFF;
+    width: 15%;
+}
+.toping{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.HomePage input{
+    width: 100%;
+    padding: .3rem;
+}
+.btns{
+    width: 7rem;
+    padding: .2rem;
+    margin-right: .5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background: none;
+    border:2px solid #000;
+}
+.btns:hover{
+    background: #000;
+    color:#fff;
+}
+.toping{
+    padding-left: 2rem;
+    padding-right: 2.5rem;
+}
+.btni{
+    padding:.5rem;
+    font-size: 1.2rem;
+    background: none;
+    cursor: pointer;
+    border:2px solid #000;
+}
+.btni:hover{
+    background: #000;
+    color: #FFF;
+}
+.up{
+    color: rgb(1, 82, 51);
+    border:1px solid rgb(1, 82, 51);
+}
+.up:hover{
+    background: rgb(1, 82, 51);
+    color: #fff;
+}
+.del{
+    color: rgb(187, 0, 0);
+    border:1px solid rgb(187, 0, 0);
+}
+.del:hover{
+    background: rgb(187, 0, 0);
+    color: #fff;
+}
+.logout{
+    margin-right: 2rem;
+    background: none;
+    padding:.5rem;
+    font-size: 1.1rem;
+    position: relative;
+    color: #000;
+    border:2px solid #000;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.logout::after{
+    content: '';
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    top: 0;left: 0;
+    background: #eee;
+    transition:width .4s linear;
+    z-index: -1;
+}
+.logout:hover::after{
+    width: 100%;
+}
+.tit{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+.Create{
+    position: absolute;
+    top: -100%;left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    background-image: radial-gradient(circle, #83bfff, #70c2fe, #5bc5fc, #45c8f8, #2dcaf2, #23cff0, #1dd4ee, #1fd8eb, #30e1ed, #40eaef, #4ff2f0, #5ffbf1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: .5s linear;
+}
+.active form,.Create form{
+    background-image: radial-gradient(circle, #0089b6, #0084b4, #007cb1, #0077ae, #006fab, #006da9, #006ba8, #0068a6, #0068a6, #0068a7, #0068a7, #0068a7);
+    padding:2rem;
+    width: 25rem;
+    box-shadow: -3px 12px 41px 6px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+.active{
+    position: absolute;
+    top: 0;left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    background-image: radial-gradient(circle, #83bfff, #70c2fe, #5bc5fc, #45c8f8, #2dcaf2, #23cff0, #1dd4ee, #1fd8eb, #30e1ed, #40eaef, #4ff2f0, #5ffbf1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s linear;
+    opacity: 1; 
+}
+.active form h1,.Create form h1{
+    color: #FFF;
+    text-align: center;
+    padding-bottom:.8rem;
+}
+.active form label,.Create form label{
+    color: #FFF;
+    padding-bottom:.5rem;
+    padding-top: .8rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+input[type='text'],
+input[type='email'],
+input[type='password']{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: white;
+    padding: 10px 20px 10px 20px;
+    box-shadow: inset 1.3px .3px 2px .9px rgba(0, 0, 0, 0.534);
+}
+.active form .bb,.Create form .bb{
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    margin-top: 1.5rem;
+}
+.active form .bb button,.Create form .bb button{
+    width: 9.5rem;
+    margin-left: .3rem;
+    margin-right: .3rem;
+    background: none;
+    border:2px solid #fff;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    padding: .5rem;
+    font-size: 1.2rem;
+    position: relative;
+    z-index: 1;
+    transition: .5s linear;
+}
+.active form .bb button::after{
+    content: '';
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;left: 0;
+    background: #eee;
+    transition: width .6s linear;
+}
+.active form .bb button:hover::after{
+    width: 100%;
+    z-index: -1;
+}
+.active form .bb button:hover{
+    color: #000;
+}
+.loginPage,.RegPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }

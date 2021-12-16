@@ -39,28 +39,34 @@ export default function Register(){
             );
             if(reg.success){
                 SetSuccess(reg.Message);
-                SetValues({...Values})
+                SetValues({
+                    username:'',
+                    email:'',
+                    password:'',
+                    confirm:''
+                });
             }else{
                 SetError(reg.Message);
             }
-            console.log(Values);
         }
     }
     return(
-        <form onSubmit={OnSubmited} className="form">
-            <h1>Register Form</h1>
-            {(Error && !Success)? ( <div className="error">{Error}</div> ) : null}
-            {(!Error && Success)? ( <div className="info">{Success}</div> ) : null}
-            <label htmlFor="username">User Name :</label>
-            <input type="text" name="username" placeholder="Enter Your User Name :" required onChange={OnChanging} />
-            <label htmlFor="email">Email :</label>
-            <input type="email" name="email" placeholder="Enter Your Email :" required onChange={OnChanging} />
-            <label htmlFor="password">Passowrd :</label>
-            <input type="password" name="password" placeholder="Enter Your Password :" required onChange={OnChanging} />
-            <label htmlFor="confirm">Passowrd :</label>
-            <input type="password" name="confirm" placeholder="Confirm Your Password :" required onChange={OnChanging} />
-            <button type="submit">Register</button>
-            <a href="/">Already Have Account ?</a>
-        </form>
+        <div className="RegPage">
+            <form onSubmit={OnSubmited} className="form">
+                <h1>Register Form</h1>
+                {(Error && !Success)? ( <div className="error">{Error}</div> ) : null}
+                {(!Error && Success)? ( <div className="info">{Success}</div> ) : null}
+                <label htmlFor="username">User Name :</label>
+                <input type="text" name="username" placeholder="Enter Your User Name :" value={Values.username} required onChange={OnChanging} />
+                <label htmlFor="email">Email :</label>
+                <input type="email" name="email" placeholder="Enter Your Email :" value={Values.email} required onChange={OnChanging} />
+                <label htmlFor="password">Passowrd :</label>
+                <input type="password" name="password" placeholder="Enter Your Password :" value={Values.password} required onChange={OnChanging} />
+                <label htmlFor="confirm">Confirme Passowrd :</label>
+                <input type="password" name="confirm" placeholder="Confirm Your Password :" value={Values.confirm} required onChange={OnChanging} />
+                <button type="submit">Register</button>
+                <a href="/">Already Have Account ?</a>
+            </form>
+        </div>
     )
 }

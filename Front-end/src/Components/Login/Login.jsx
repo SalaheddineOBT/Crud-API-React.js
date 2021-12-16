@@ -33,23 +33,29 @@ export default function Login({logined}){
             const log=await login({email:Values.email,password:sha256.x2(Values.password)});
             if(log.success){
                 SetSuccess(log.Message);
-                logined(true);
+                logined(true,log.data.ID,log.data.UserName);
+                SetValues({
+                    email:'',
+                    password:''
+                });
             }else{
                 SetError(log.Message);
             }
         }
     };
     return(
-        <form onSubmit={OnSubmited} className="form">
-            <h1>Login Form</h1>
-            {(Error && !Success) ? ( <div className="error">{Error}</div> ) : null}
-            {(!Error && Success) ? ( <div className="info">{Success}</div> ) : null}
-            <label htmlFor="email">Email :</label>
-            <input type="email" name="email" placeholder="Enter Your Email :" required onChange={OnChanging} />
-            <label htmlFor="password">Passowrd :</label>
-            <input type="password" name="password" placeholder="Enter Your Password :" required onChange={OnChanging} />
-            <button type="submit">Login</button>
-            <a href="/register">Don't Have Account ?</a>
-        </form>
+        <div className="loginPage">
+            <form onSubmit={OnSubmited} className="form">
+                <h1>Login Form</h1>
+                {(Error && !Success) ? ( <div className="error">{Error}</div> ) : null}
+                {(!Error && Success) ? ( <div className="info">{Success}</div> ) : null}
+                <label htmlFor="email">Email :</label>
+                <input type="email" name="email" placeholder="Enter Your Email :" value={Values.email} required onChange={OnChanging} />
+                <label htmlFor="password">Passowrd :</label>
+                <input type="password" name="password" placeholder="Enter Your Password :" value={Values.password} required onChange={OnChanging} />
+                <button type="submit">Login</button>
+                <a href="/register">Don't Have Account ?</a>
+            </form>
+        </div>
     )
 }
