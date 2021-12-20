@@ -141,7 +141,7 @@ export default class Home extends Component{
                 <div className="HomePage">
                     <nav>
                         <span className="tit">Dashboard</span>
-                        <h1>Welcom <span className="h">{this.props.v}</span></h1>
+                        <h1>User Connecté : <span className="h">{this.props.v}</span></h1>
                         <button className="logout" type='submit' onClick={()=>this.props.logout()}>Logout</button>
                     </nav>
                     <div className="cont">

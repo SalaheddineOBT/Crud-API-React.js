@@ -25,9 +25,7 @@ export default function Register(){
 
     const OnSubmited=async(e)=>{
         e.preventDefault();
-        if(Values.password.length < 8){
-            SetError("Password must be at least 8 characters !");
-        }else if(Values.password !== Values.confirm){
+        if(Values.password !== Values.confirm){
             SetError("Confirm Password is Incorrect !");
         }else{
             const reg=await Register(
@@ -37,16 +35,18 @@ export default function Register(){
                     password:sha256.x2(Values.confirm)
                 }
             );
-            if(reg.success){
-                SetSuccess(reg.Message);
+            if(reg.success===1){
                 SetValues({
                     username:'',
                     email:'',
                     password:'',
                     confirm:''
                 });
+                SetSuccess(reg.Message);
+                SetError("");
             }else{
                 SetError(reg.Message);
+                SetSuccess("");
             }
         }
     }

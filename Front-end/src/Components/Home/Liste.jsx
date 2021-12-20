@@ -27,9 +27,16 @@ export default class Liste extends Component{
                 }else{
                     this.setState({err:""});
                     if(data.success){
-                        this.toogleUpdate();
-                        this.props.listing();
-                        alert(data.Message);
+                        if(this.props.id===idd){
+                            this.toogleUpdate();
+                            this.props.listing();
+                            alert(data.Message);
+                            this.props.logined(true,idd,name);
+                        }else{
+                            this.toogleUpdate();
+                            this.props.listing();
+                            alert(data.Message);
+                        }
                     }else{
                         alert(data.Message);
                     }
@@ -63,9 +70,6 @@ export default class Liste extends Component{
             });
         }
     };
-    cancel=()=>{
-        this.toogleUpdate();
-    };
     toogleUpdate=()=>{
         const {isUpdate}=this.state;
         this.setState({isUpdate:!isUpdate});
@@ -91,7 +95,7 @@ export default class Liste extends Component{
                         <input type="email" ref={this.inputEmail} defaultValue={users.Email} required />
                         { (this.state.err) ? (<span className="error">{this.state.err}</span>) : null}
                     </td>
-                    <td><button className="btns up" type="submit" onClick={()=>this.update(users.ID)}>Save</button><button className="btns" type="submit" onClick={this.cancel}>Cancel</button></td>
+                    <td><button className="btns up" type="submit" onClick={()=>this.update(users.ID)}>Save</button><button className="btns" type="submit" onClick={this.toogleUpdate}>Cancel</button></td>
                 </tr>
             )
         };

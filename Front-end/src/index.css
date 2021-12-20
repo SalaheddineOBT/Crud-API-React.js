@@ -29,9 +29,9 @@
 }
 .HomePage{
     padding: 1rem;
-    background: rgba(0, 0, 0, 0.096);
     width: 100%;
     height: 100vh;
+    background-image: radial-gradient(circle, #d2f5ff, #d7f6fe, #dcf7fd, #e0f7fd, #e5f8fc, #e7f9fc, #eaf9fb, #ecfafb, #edfafb, #effbfc, #f0fbfc, #f1fbfc);
 }
 .HomePage nav{
     position: fixed;
@@ -39,37 +39,51 @@
     display: flex;
     width: 100%;
     padding: 1em;
-    background: rgba(197, 136, 255, 0.24);
+    color: #fff;
+    background: #165975;
     align-items: center;
     justify-content: space-between;
 }
 .h{
-    color: blue;
+    color: #FCB694;
+}
+.tbody{
+    overflow: scroll;
 }
 .HomePage form{
-    height: 66.7vh;
+    height: 64.4vh;
     background: #a2a2a2;
     width: 95%;
     margin:auto;
     margin-top: 2rem;
 }
-/* .HomePage .cont button{
-} */
+.HomePage form table{
+    -webkit-box-shadow: 1px 6px 19px 6px rgba(0,0,0,0.28); 
+    box-shadow: 1px 6px 19px 6px rgba(0,0,0,0.28);
+}
 .cont{
     margin-top:5rem;
 }
 table{
     width: 100%;
     background: #000;
+    border-collapse: collapse;
+    box-shadow: 6px 19px 16px #000;
 }
 th{
-    padding: .5rem;
-    background: #FFF;
+    padding: .8rem;
+    color: #FFF;
+    font-size: 1.2rem;
+    background: #4B94C7;
+}
+table tr{
+    background: #5ffbf1;
 }
 td{
     padding: .5rem;
     text-align: center;
     background: #FFF;
+    font-size: 1.2rem;
     width: 15%;
 }
 .toping{
@@ -88,7 +102,7 @@ td{
     font-size: 1.1rem;
     cursor: pointer;
     background: none;
-    border:2px solid #000;
+    border:1px solid #000;
 }
 .btns:hover{
     background: #000;
@@ -110,19 +124,19 @@ td{
     color: #FFF;
 }
 .up{
-    color: rgb(1, 82, 51);
-    border:1px solid rgb(1, 82, 51);
+    color: #008A5B;
+    border:1px solid #008A5B;
 }
 .up:hover{
-    background: rgb(1, 82, 51);
+    background: #008A5B;
     color: #fff;
 }
 .del{
-    color: rgb(187, 0, 0);
-    border:1px solid rgb(187, 0, 0);
+    color: #C34A36;
+    border:1px solid #C34A36;
 }
 .del:hover{
-    background: rgb(187, 0, 0);
+    background: #C34A36;
     color: #fff;
 }
 .logout{
@@ -131,8 +145,9 @@ td{
     padding:.5rem;
     font-size: 1.1rem;
     position: relative;
-    color: #000;
-    border:2px solid #000;
+    color: #fff;
+    border:2px solid #fff;
+    font-weight: 600;
     cursor: pointer;
     border-radius: 10px;
 }
@@ -142,12 +157,15 @@ td{
     height: 100%;
     position: absolute;
     top: 0;left: 0;
-    background: #eee;
+    background: #fff;
     transition:width .4s linear;
     z-index: -1;
 }
 .logout:hover::after{
     width: 100%;
+}
+.logout:hover{
+    color: #165975;
 }
 .tit{
     font-size: 1.2rem;
@@ -191,7 +209,7 @@ td{
     text-align: center;
     padding-bottom:.8rem;
 }
-.active form label,.Create form label{
+label{
     color: #FFF;
     padding-bottom:.5rem;
     padding-top: .8rem;
@@ -252,4 +270,77 @@ input[type='password']{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background:linear-gradient(to right top, #3c3d3fb6, #464647B6, #494a4aB6), url(./Images/bg-01.jpg);
+}
+.loginPage form,.RegPage form{
+    padding: 1.4rem;
+    border-radius: .8rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background: #fcfcf4;
+    width: 25rem;
+    position: relative;
+}
+.loginPage form label,.RegPage form label{
+    color: #000;
+}
+.loginPage form button,.RegPage form button{
+    background: #076585;
+    background: -webkit-linear-gradient(to bottom left, #044E6E, #065169);
+    background: linear-gradient(to bottom left, #044E6E, #065169);
+    padding: .5rem;
+    border:none;
+    border-radius: 1rem;
+    box-shadow:inset -2px -1px 45px -10px rgba(255, 255, 255, 0.705);
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 60%;
+    margin: auto;
+    color: #fcfcf4;
+    font-weight: 600;
+    margin-top: 1.4rem;
+    transition: .6s linear;
+}
+.loginPage form button:hover,.RegPage form button:hover{
+    -webkit-box-shadow: inset -5px -5px 50px 50px #000000; 
+    box-shadow: inset -5px -5px 50px 50px #000000;
+}
+.loginPage form h1,.RegPage form h1{
+    text-align: center;
+    padding-bottom: .7rem;
+}
+.RegPage form a{
+    margin-top: .7rem;
+    color:#147089 ;
+    position: relative;
+    font-size: 1.1rem;
+    width: 11rem;
+    height:1.5rem;
+    overflow: hidden;
+}
+.loginPage form a{
+    margin-top: .7rem;
+    color:#147089 ;
+    position: relative;
+    font-size: 1.1rem;
+    width: 9.8rem;
+    height:1.5rem;
+    overflow: hidden;
+}
+.loginPage form a::before,.RegPage form a::before{
+    content: '';
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 2px;
+    background: #000;
+    bottom: -10px;left: 0;
+    border-radius: 4px;
+    transition: .3s linear;
+}
+.loginPage form a:hover::before,.RegPage form a:hover::before{
+    opacity: 1;
+    bottom: 3px;
 }
