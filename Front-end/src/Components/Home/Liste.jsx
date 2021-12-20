@@ -46,17 +46,17 @@ export default class Liste extends Component{
             });
         }
     };
-    delete=async (id) =>{
+    delete=async (idd) =>{
         if(window.confirm("Are You Really Wante Delete This User ?")){
             await fetch("http://localhost/Crud%20API%20PHP/Operations/Delete.php",{
                 method:"DELETE",
                 headers:{'Content-Type': 'application/json'},
-                body:JSON.stringify({id:id})
+                body:JSON.stringify({id:idd})
             }).then(res=>{
                 return res.json();
             }).then(data=>{
                 if(data.success){
-                    if(this.props.id===id){
+                    if(this.props.id==idd){
                         this.props.logined(false,'','');
                     }else{
                         alert(data.Message);
@@ -70,6 +70,7 @@ export default class Liste extends Component{
             });
         }
     };
+    
     toogleUpdate=()=>{
         const {isUpdate}=this.state;
         this.setState({isUpdate:!isUpdate});
@@ -82,7 +83,11 @@ export default class Liste extends Component{
                     <td>{users.ID}</td>
                     <td>{users.UserName}</td>
                     <td>{users.Email}</td>
-                    <td><button className="btns up" type="submit" onClick={this.toogleUpdate}>Update</button><button className="btns del" type="submit" onClick={()=>this.delete(users.ID)}>Delete</button></td>
+                    <td>
+                        <button className="btns read" type="submit" onClick={()=>this.props.Read(parseInt(users.ID),true)} >Read</button>
+                        <button className="btns up" type="submit" onClick={this.toogleUpdate}>Update</button>
+                        <button className="btns del" type="submit" onClick={()=>this.delete(parseInt(users.ID))}>Delete</button>
+                    </td>
                 </tr>
             )
         };

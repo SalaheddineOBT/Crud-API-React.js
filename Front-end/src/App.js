@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       {
-        (!Vrai.islogin && !Vrai.username && !Vrai.username) ?
+        (!Vrai.islogin || !Vrai.username || !Vrai.id) ?
         (
           <BrowserRouter>
             <Routes>

@@ -21,7 +21,9 @@ export default class Home extends Component{
             email:'',
             password:'',
             confirm:''
-        }
+        },
+        user1:{},
+        f:false
     };
 
     componentDidMount(){
@@ -106,14 +108,37 @@ export default class Home extends Component{
         this.inputPassword.current.value="";
         this.inputConfirm.current.value="";
     }
+
+    Read=async (id,v)=>{
+        if(id && Number.isInteger(id)){
+            await fetch(`http://localhost/Crud%20API%20PHP/Operations/Read.php?id=${id}`,{
+
+            }).then(res=>{
+                return res.json();
+            }).then(data=>{
+                if(data.success){
+                    this.setState({user1:data.data});
+                    this.setState({f:v});
+                }else{
+                    alert(data.Message);
+                }
+            }).catch(e=>{
+                console.log(e);
+            });
+        }
+    }
+
+    toogleF=()=>{
+        this.setState({f:false});
+    }
     
     render(){
-        const {id,logined}=this.props;
+        const {id}=this.props;
 
         const lister=this.state.users.map((u,i)=>{
             return(
                 <Fragment key={i}>
-                    <Liste users={u} id={id} logined={logined} index={i} listing={this.listing} />
+                    <Liste users={u} id={id} Read={this.Read} logined={this.props.logined} index={i} listing={this.listing} />
                 </Fragment>
             )
         });
@@ -138,6 +163,7 @@ export default class Home extends Component{
                         </div>
                     </form>
                 </div>
+                
                 <div className="HomePage">
                     <nav>
                         <span className="tit">Dashboard</span>
@@ -164,6 +190,19 @@ export default class Home extends Component{
                                 </tbody>
                             </table>
                         </form>
+                    </div>
+                </div>
+
+                <div className={this.state.f ? "information" : "informaleft"}>
+                    <div className="containn">
+                        <h1>User Information</h1>
+                        <ul>
+                            <li><span className="in">ID : </span>{this.state.user1.ID} </li>
+                            <li><span className="in">User Name : </span> {this.state.user1.UserName}</li>
+                            <li><span className="in">Email : </span>{this.state.user1.Email} </li>
+                            <li><span className="in">Create in : </span> {this.state.user1.CreateDate}</li>
+                        </ul>
+                        <button onClick={this.toogleF}>Close</button>
                     </div>
                 </div>
             </>

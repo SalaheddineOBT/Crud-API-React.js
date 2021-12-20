@@ -52,14 +52,10 @@
 }
 .HomePage form{
     height: 64.4vh;
-    background: #a2a2a2;
+    background-image: radial-gradient(circle, #d2f5ff, #d7f6fe, #dcf7fd, #e0f7fd, #e5f8fc, #e7f9fc, #eaf9fb, #ecfafb, #edfafb, #effbfc, #f0fbfc, #f1fbfc);
     width: 95%;
     margin:auto;
     margin-top: 2rem;
-}
-.HomePage form table{
-    -webkit-box-shadow: 1px 6px 19px 6px rgba(0,0,0,0.28); 
-    box-shadow: 1px 6px 19px 6px rgba(0,0,0,0.28);
 }
 .cont{
     margin-top:5rem;
@@ -68,7 +64,6 @@ table{
     width: 100%;
     background: #000;
     border-collapse: collapse;
-    box-shadow: 6px 19px 16px #000;
 }
 th{
     padding: .8rem;
@@ -84,7 +79,10 @@ td{
     text-align: center;
     background: #FFF;
     font-size: 1.2rem;
-    width: 15%;
+    width: 10%;
+}
+td:nth-child(4){
+    width: 20%;
 }
 .toping{
     display: flex;
@@ -343,4 +341,66 @@ input[type='password']{
 .loginPage form a:hover::before,.RegPage form a:hover::before{
     opacity: 1;
     bottom: 3px;
+}
+.information{
+    width: 23rem;
+    height: 20rem;
+    position:absolute;
+    top:4.5rem;left: 0;
+    color: #FFF;
+    background: #076585;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .6s linear;
+}
+ul{
+    padding:1rem;
+    width:100%;
+}
+ul li{
+    font-size: 1.4rem;
+    padding: .5rem;
+}
+.in{
+    font-weight: 600;
+    color: #b3f6ff;
+}
+.informaleft button,
+.information button{
+    padding: .5rem;
+    border:1px solid #FFF;
+    color: #FFF;
+    background: none;
+    cursor: pointer;
+    transition: .6s linear;
+    margin-left: 1.5rem;
+    font-size: 1.1rem;
+}
+.information button:hover{
+    background: #fff;
+    color: #076585;
+}
+.containn{
+    width: 23rem;
+    height: 20rem;
+}
+.containn h1{
+    text-align: center;
+    margin-top: 1rem;
+}
+.informaleft{
+    width: 23rem;
+    height: 20rem;
+    position:absolute;
+    top:4.5rem;left: -30rem;
+    color: #b3f6ff;
+    background: #076585;
+    display: flex;
+    transition: .6s linear;
+    align-items: center;
+    justify-content: center;
+}
+.read:hover{
+    background: linear-gradient(to right bottom, #616161, #9bc5c3,#77a1d3, #79cbca, #e684ae); 
 }
