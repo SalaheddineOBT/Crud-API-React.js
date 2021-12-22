@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import sha256 from "sha256";
 
 export default function Login({logined}){
@@ -6,6 +6,11 @@ export default function Login({logined}){
         email:'',
         password:''
     };
+
+    useEffect(() => {
+        document.title="Login Page";
+    },[]);
+
     const [Values,SetValues]=useState(user);
     const [Error,SetError]=useState(null);
     const [Success,SetSuccess]=useState(null);

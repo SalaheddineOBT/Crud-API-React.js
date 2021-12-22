@@ -1,4 +1,4 @@
-import React,{Component,Fragment,createRef} from "react";
+import React,{Component,Fragment,createRef,useEffect} from "react";
 import sha256 from "sha256";
 import Liste from "./Liste";
 
@@ -11,6 +11,11 @@ export default class Home extends Component{
         this.inputPassword=createRef();
         this.inputConfirm=createRef();
     }
+
+    useEffect=() => {
+        document.title="Home Page";
+    }
+
 
     state={
         err:'',

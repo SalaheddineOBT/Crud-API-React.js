@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import axios from 'axios';
 import sha256 from 'sha256';
 
@@ -9,6 +9,9 @@ export default function Register(){
         password:'',
         confirm:''
     }
+    useEffect(() => {
+        document.title="Register Page";
+    },[]);
     const [Values,SetValues]=useState(user);
     const [Error,SetError]=useState("");
     const [Success,SetSuccess]=useState("");
